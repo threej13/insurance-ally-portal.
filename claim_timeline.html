@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claim Filed Timeline</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    padding: 30px;
+  }
+  h2 {
+    color: #333;
+  }
+  .timeline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .step {
+    padding: 12px 20px;
+    background: #e0e0e0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    user-select: none;
+  }
+  .step.active {
+    background: #2196f3;
+    color: white;
+  }
+  .timestamp {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+
+<h2>Claim Filed Timeline</h2>
+<div class="timeline">
+  <div class="step" onclick="activateStep(this)">Claim Filed</div>
+  <div class="step" onclick="activateStep(this)">Inspection</div>
+  <div class="step" onclick="activateStep(this)">Estimate Received</div>
+  <div class="step" onclick="activateStep(this)">Supplement</div>
+  <div class="step" onclick="activateStep(this)">Negotiation</div>
+  <div class="step" onclick="activateStep(this)">Payment Released</div>
+  <div class="step" onclick="activateStep(this)">Construction Complete</div>
+</div>
+<div class="timestamp" id="timestamp">Last Updated: None</div>
+
+<script>
+function activateStep(selectedStep) {
+  const steps = document.querySelectorAll('.step');
+  steps.forEach(step => step.classList.remove('active'));
+  selectedStep.classList.add('active');
+  const now = new Date();
+  document.getElementById('timestamp').innerText =
+    "Last Updated: " + now.toLocaleString();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document Hub</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    padding: 30px;
+  }
+  h2 {
+    background: #1e90ff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    margin: 0;
+  }
+  .hub {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .category {
+    flex: 1;
+    min-width: 200px;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  .category h3 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  .files {
+    min-height: 80px;
+    border: 1px dashed #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    background: #fff;
+  }
+  .file-item {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #1e90ff;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .upload {
+    margin-top: 10px;
+  }
+  .timestamp {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+
+<h2>Document Hub</h2>
+<div class="hub">
+  <div class="category">
+    <h3>Policy Docs</h3>
+    <div class="files" id="policy-files">No documents yet</div>
+    <div class="upload">
+      <input type="file" onchange="uploadFile(event, 'policy-files')">
+    </div>
+    <div class="timestamp" id="policy-timestamp">Last Updated: None</div>
+  </div>
+
+  <div class="category">
+    <h3>Damage Photos</h3>
+    <div class="files" id="damage-files">No documents yet</div>
+    <div class="upload">
+      <input type="file" onchange="uploadFile(event, 'damage-files')">
+    </div>
+    <div class="timestamp" id="damage-timestamp">Last Updated: None</div>
+  </div>
+
+  <div class="category">
+    <h3>Signed Forms</h3>
+    <div class="files" id="signed-files">No documents yet</div>
+    <div class="upload">
+      <input type="file" onchange="uploadFile(event, 'signed-files')">
+    </div>
+    <div class="timestamp" id="signed-timestamp">Last Updated: None</div>
+  </div>
+
+  <div class="category">
+    <h3>Carrier Correspondence</h3>
+    <div class="files" id="carrier-files">No documents yet</div>
+    <div class="upload">
+      <input type="file" onchange="uploadFile(event, 'carrier-files')">
+    </div>
+    <div class="timestamp" id="carrier-timestamp">Last Updated: None</div>
+  </div>
+</div>
+
+<script>
+function uploadFile(event, sectionId) {
+  const filesSection = document.getElementById(sectionId);
+  const timestamp = document.getElementById(sectionId.replace('files','timestamp'));
+  const file = event.target.files[0];
+
+  if (file) {
+    const fileURL = URL.createObjectURL(file);
+    const fileLink = document.createElement('a');
+    fileLink.classList.add('file-item');
+    fileLink.textContent = file.name;
+    fileLink.href = fileURL;
+    fileLink.target = "_blank";
+
+    if (filesSection.textContent === "No documents yet") {
+      filesSection.textContent = "";
+    }
+    filesSection.appendChild(fileLink);
+
+    const now = new Date();
+    timestamp.textContent = "Last Updated: " + now.toLocaleString();
+  }
+}
+</script>
+
+</body>
+</html>

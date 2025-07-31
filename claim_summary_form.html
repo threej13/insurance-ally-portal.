@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claim Summary</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    padding: 30px;
+  }
+  h2 {
+    background: #1e90ff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    margin: 0;
+  }
+  .summary-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .field {
+    margin-bottom: 10px;
+  }
+  .field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 3px;
+  }
+  .field input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .save-btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .display {
+    margin-top: 15px;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 6px;
+  }
+  .timestamp {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+
+<h2>Claim Summary</h2>
+<div class="summary-box">
+  <div class="field">
+    <label>Homeowner Name</label>
+    <input type="text" id="homeownerName">
+  </div>
+  <div class="field">
+    <label>Claim Number</label>
+    <input type="text" id="claimNumber">
+  </div>
+  <div class="field">
+    <label>Policy Number</label>
+    <input type="text" id="policyNumber">
+  </div>
+  <div class="field">
+    <label>Homeowner Address</label>
+    <input type="text" id="homeownerAddress">
+  </div>
+  <div class="field">
+    <label>Homeowner Phone Number</label>
+    <input type="text" id="homeownerPhone">
+  </div>
+  <div class="field">
+    <label>Alternative Phone Number</label>
+    <input type="text" id="altPhone">
+  </div>
+  <div class="field">
+    <label>Email Address</label>
+    <input type="email" id="emailAddress">
+  </div>
+  <div class="field">
+    <label>Insurance Company</label>
+    <input type="text" id="insuranceCompany">
+  </div>
+  <div class="field">
+    <label>Insurance Adjuster</label>
+    <input type="text" id="insuranceAdjuster">
+  </div>
+
+  <button class="save-btn" onclick="saveSummary()">Save</button>
+
+  <div class="display" id="summaryDisplay">
+    <strong>Claim Summary will appear here after saving.</strong>
+  </div>
+  <div class="timestamp" id="summaryTimestamp">Last Updated: None</div>
+</div>
+
+<script>
+function saveSummary() {
+  const homeownerName = document.getElementById('homeownerName').value;
+  const claimNumber = document.getElementById('claimNumber').value;
+  const policyNumber = document.getElementById('policyNumber').value;
+  const homeownerAddress = document.getElementById('homeownerAddress').value;
+  const homeownerPhone = document.getElementById('homeownerPhone').value;
+  const altPhone = document.getElementById('altPhone').value;
+  const emailAddress = document.getElementById('emailAddress').value;
+  const insuranceCompany = document.getElementById('insuranceCompany').value;
+  const insuranceAdjuster = document.getElementById('insuranceAdjuster').value;
+
+  const display = document.getElementById('summaryDisplay');
+  display.innerHTML = `
+    <strong>Homeowner:</strong> ${homeownerName}<br>
+    <strong>Claim Number:</strong> ${claimNumber}<br>
+    <strong>Policy Number:</strong> ${policyNumber}<br>
+    <strong>Address:</strong> ${homeownerAddress}<br>
+    <strong>Phone:</strong> ${homeownerPhone}<br>
+    <strong>Alt Phone:</strong> ${altPhone}<br>
+    <strong>Email:</strong> ${emailAddress}<br>
+    <strong>Insurance Company:</strong> ${insuranceCompany}<br>
+    <strong>Adjuster:</strong> ${insuranceAdjuster}
+  `;
+
+  const now = new Date();
+  document.getElementById('summaryTimestamp').textContent =
+    "Last Updated: " + now.toLocaleString();
+}
+</script>
+
+</body>
+</html>

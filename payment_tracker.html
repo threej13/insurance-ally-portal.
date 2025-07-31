@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Tracker</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    padding: 30px;
+  }
+  h2 {
+    color: #333;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background: #1e90ff;
+    color: #fff;
+  }
+  select {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  .timestamp {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+
+<h2>Payment Tracker</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Statement</th>
+      <th>Status</th>
+      <th>Last Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ACV Status</td>
+      <td>
+        <select onchange="updateTimestamp(this)">
+          <option value="">Select</option>
+          <option>Pending</option>
+          <option>Received</option>
+        </select>
+      </td>
+      <td class="timestamp">Not Updated</td>
+    </tr>
+    <tr>
+      <td>RCV Status</td>
+      <td>
+        <select onchange="updateTimestamp(this)">
+          <option value="">Select</option>
+          <option>Pending</option>
+          <option>Received</option>
+        </select>
+      </td>
+      <td class="timestamp">Not Updated</td>
+    </tr>
+    <tr>
+      <td>Depreciation</td>
+      <td>
+        <select onchange="updateTimestamp(this)">
+          <option value="">Select</option>
+          <option>Pending</option>
+          <option>Received</option>
+        </select>
+      </td>
+      <td class="timestamp">Not Updated</td>
+    </tr>
+    <tr>
+      <td>Mortgage Endorsement</td>
+      <td>
+        <select onchange="updateTimestamp(this)">
+          <option value="">Select</option>
+          <option>Required</option>
+          <option>Not Required</option>
+        </select>
+      </td>
+      <td class="timestamp">Not Updated</td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+function updateTimestamp(selectElement) {
+  const now = new Date();
+  const timestampCell = selectElement.parentElement.nextElementSibling;
+  timestampCell.textContent = "Last Updated: " + now.toLocaleString();
+}
+</script>
+
+</body>
+</html>
